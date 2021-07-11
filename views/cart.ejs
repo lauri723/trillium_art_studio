@@ -1,0 +1,150 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="container container-cart">
+    <div class="card-cart">
+        <div class="card-body">
+            <h1 class="text-center mb-4">Checkout</h1>
+            <hr>
+            <% if(artworks){%>
+            <!-- <div class="row cart-line-item"> -->
+            <table>
+                <!-- <thead class="text-end">
+                    <tr>
+                        <th class="header-image">&nbsp; &nbsp; &nbsp;</th>
+                        <th class="header-artwork text-start">ARTWORK</th>
+                        <th class="header-price">PRICE &nbsp; &nbsp;</th>
+                        <th class="header-qty">QTY &nbsp; &nbsp; &nbsp;</th>
+                        <th class="header-subtotal">SUBTOTOAL</th>
+                    </tr>
+                </thead> -->
+                <tbody>
+                    <% for(let artwork of artworks) { %>
+                    <tr class="text-end cart-line-item">
+                        <td>
+                            <%if(artwork.photos.length) {%>
+                            <div class="card-img-top">
+                                <img class="img-fluid cart-image" alt="" src="<%=artwork.photos[0].url%>">
+                                <% } %>
+                        </td>
+                        <td class="cart-item-title"><%= artwork.title %></td>
+                        <!-- <td class="text-muted cart-price">
+                            $<%= artwork.price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) %>&nbsp;
+                            &nbsp;</td> -->
+                        <!-- <td class="cart-qty">
+                            <a class="plus-minus" href="/cart/update/<%= artwork.id %>?action=min"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-dash-square" viewBox="0 0 16 16">
+                                    <path
+                                        d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
+                                </svg></a>
+                            &nbsp;<%= artwork.qty %>&nbsp;
+                            <a class="plus-minus" href="/cart/update/<%= artwork.id %>?action=add"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-plus-square" viewBox="0 0 16 16">
+                                    <path
+                                        d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                    <path
+                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                </svg></a>
+                        </td> -->
+                        <td class="cart-price-subtotal">
+                            $<%= (artwork.price).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) %>
+                        </td>
+                        <td class="cart-trash">
+                            <a href="/cart/update/<%= artwork.id %>?action=clear"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                                    class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                    <path fill-rule="evenodd"
+                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                </svg></a>
+                        </td>
+                    </tr>
+                    <% }; %>
+                </tbody>
+            </table>
+            <!-- </div> -->
+            <hr>
+            <hr>
+            <div class="container">
+                <div class="row cart-bottom">
+                    <div class="col-6 cart-contact">
+                        <h3>COMPANY CONTACT INFO</h3>
+                        <h6>Any disclaimers and/or other pertinent stuff</h6>
+                    </div>
+                    <div class="col-6 cart-totals">
+                        <div class="totals">
+                            <table>
+                                <thead>
+                                    <th>Total Items: <%= cartCounter %></th>
+                                </thead>
+                                <tbody>
+                                    <tr class="subtotal">
+                                        <td class="td-left">Subtotal</td>
+                                        <td class="td-right">
+                                            $<%= subTotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) %>
+                                        </td>
+                                    </tr>
+                                    <tr class="shipHandle">
+                                        <td class="td-left">Est Taxes</td>
+                                        <td class="td-right">TBD</td>
+                                    </tr>
+                                    <tr class="shipHandle">
+                                        <td class="td-left">Shipping and Handling</td>
+                                        <td class="td-right">$<span id="shippping"><%= shippingTotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) %></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-left"><label for="pickup">Click for in Person Pickup</label></td>
+                                        <td class="td-right"><input type="checkbox" class="form-check-input mt-0" id="pickup" name="pickup"></td>
+                                    </tr>
+                                    <tr class="Order-total">
+                                        <td class="td-left">Order Total</td>
+                                        <td class="td-right">
+                                            $<span id="order-total"><%= (subTotal + shippingTotal).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) %></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <%}else{%>
+                        <h3 class="text-center">Your cart is empty</h3>
+                        <%}%>
+                        <div class="cart-btn text-center mt-3">
+                            <a href="/artworks" class="btn btn-sm btn-success px-4">BACK TO ALL ARTWORK</a>
+                            <a href="/cart/checkout" id="checkout-button" class="btn btn-info btn-sm btn-cart-btn px-5">CHECKOUT</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>    
+</div> 
+
+<script>
+    let pickup = document.getElementById('pickup');
+    let originalShipping = <%= shippingTotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) %>
+    let subTotal = <%= subTotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) %>;
+    let originalTotal = <%= (subTotal + shippingTotal).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) %>;
+    let orderTotal = document.getElementById('order-total');
+    let shipping = document.getElementById('shippping');
+    pickup.addEventListener('change', function(e) {
+        if(this.checked) {
+            // no shipping
+            orderTotal.innerText = `${subTotal.toFixed(2)}`;
+            shipping.innerText = '0.00';
+            fetch('/toggle-shipping?shipping=no')
+                .then(response => response.json())
+                .then(data => console.log(data));
+        } else {
+            // add shipping
+            orderTotal.innerText = `${originalTotal.toFixed(2)}`;
+            shipping.innerText = originalShipping.toFixed(2);
+            fetch('/toggle-shipping?shipping=yes')
+                .then(response => response.json())
+                .then(data => console.log(data));
+        }
+    });
+</script>
