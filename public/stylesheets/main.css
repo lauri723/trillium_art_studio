@@ -529,15 +529,23 @@ body {
   footer.footer.bg-custom {
     background: #d3d7de;
   }
-  
-  footer.footer a {
-    color: var(--color-three);
-    font-size: 1rem;
+
+  footer.footer a.nav-link {
+    color: var(--color-four);
+  }
+
+  footer.footer a.btn.btn-small {
+    color: #fff;
   }
   
   footer div.container.tril-lovely p {
     color: var(--color-one);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+  }
+
+  footer div.container.tril-lovely a {
+    color: var(--color-one);
+    font-size: 0.8rem;
   }
 
   @media only screen and (max-width: 765px) {
