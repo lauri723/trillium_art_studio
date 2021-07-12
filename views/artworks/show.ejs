@@ -47,7 +47,8 @@
                     <h5 class="card-text price mb-3">
                         $<%= artwork.price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) %>
                     </h5>
-                    <a class="btn btn-sm btn-info px-5" href="/cart/add/<%= artwork.slug %>">Add to Cart</a>
+                    <a class="btn btn-sm btn-info px-5" href="mailto:mavis@trilliumartstudio.com?subject=I'm interested in <%= artwork.title %>&body=I'm interested in your painting <%= artwork.title %>%0D%0A%0D%0AMessage:">Contact to Purchase</a>
+                    <!-- <a class="btn btn-sm btn-info px-5" href="/cart/add/<%= artwork.slug %>">Add to Cart</a> -->
                     <% } else { %>
                         Item unavailable
                     <% } %>
